@@ -503,7 +503,7 @@ InstallingProcess(){
     global InstallProgress
     global InstallProgressVar
 	global DesktopIcon
-    MsgBox, %InstallProgressVar%
+    ;MsgBox, %InstallProgressVar%
 	FileCreateDir, %InstallPath%\AutoFolder.ahk.
 	FileCopy, %A_ScriptDir%\Components\zahnrad_2.png, %InstallPath%\AutoFolder.ahk., 1
     FileRead,SourceCode, %A_ScriptDir%\Components\SourceCode.txt
@@ -511,11 +511,12 @@ InstallingProcess(){
     FileNames := ["Code1","Code2","Code3","Config"]
 
     FileNamesLoopVar := 1
+    TestVar:=0
     Loop Parse, SourceCode, `n, `r
     {
 	    if (A_LoopField ~= ("^---(" getRegExOrFromObj(AllowedFileTypes) ")$")){
 		    FileEnding := RegExReplace(A_LoopField, "[-]" , Replacement := "",,Limit := 3)
-		    FileAppend, % SubStr(text, 1, -1), % InstallPath "\AutoFolder.ahk\" FileNames[FileNamesLoopVar] "."FileEnding
+		    FileAppend, % SubStr(text, 1, -1), % InstallPath "\AutoFolder.ahk\" FileNames[FileNamesLoopVar] "."FileEnding, CP65001
 		    text := ""
 	    	FileNamesLoopVar++
     		continue
@@ -525,7 +526,10 @@ InstallingProcess(){
             Gui 1:submit, NoHide
             GuiControlGet, percentage, , %InstallProgress%
             ;Msgbox, %percentage%
-            Sleep, 100
+            ;Sleep, 100
+            ;MsgBox,%FileNamesLoopVar%
+            ;MsgBox, %TestVar%
+            ;TestVar++
     }
     ;return
 	MsgBox, Done %DesktopIcon%
