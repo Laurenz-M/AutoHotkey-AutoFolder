@@ -40,7 +40,7 @@ OptionLanguage:=LanguageIni
 
 
 
-
+BackgroundScriptRunning()
 Gui, New,, %A_Space%AutoFolder V1.0
 Gui, Font, S20 CDefault, Verdana
 Gui, Font, S20 CDefault Bold, Verdana
@@ -718,32 +718,42 @@ ReloadGui(LanguageIni,AdditionalOwnershipParam*){
 
 }
 return
-/*
-TestM(){
-    if(true){
-        static Bruh
-        Bruh := 0
+
+BackgroundScriptRunning(){
+
+    global IsRunning
+    IniRead, IsRunning, Config.ini, BackgroundScriptRunning, IsRunning
+    if(IsRunning = 1){
+        Gui 6:new, hwndScriptRunninghwnd
+        Gui 6:add, Button, gButtonExit hwndButtonExithwnd, Exit
+        Gui 6:show, w400 h200, Please wait
         
-        while(TestBreak = 0){
-            ;wait
-            Sleep,1
+        while(IsRunning = 1){
+            Sleep, 1000
+            ;IniRead, IsRunning, Config.ini, BackgroundScriptRunning, IsRunning
         }
-        Goto, Label2
+        Sleep, 5000
     }
-    else{
-        ;Reload
-        return 1
-    }
-    Return
-
-    Label:
-        Bruh := 1
-        return 1
+    Gui 6:Destroy
     return
+    ;/*
+    ButtonExit:
+        ExitApp
+    return 
+    
+    6GuiClose:
+        ExitApp
+    return 
 
-    Label2:
-        Bruh := 1
-        return 0
+    6GuiSize:
+        if(ErrorLevel=1){
+        ExitApp
+        } 
+    return
+    ;*/
 }
-Return
-*/
+
+F6::
+global IsRunning
+IsRunning := 0
+return
