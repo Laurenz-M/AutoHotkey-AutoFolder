@@ -13,7 +13,7 @@ I do not plan to do any pre-releases, you will have to wait for the final produc
 I will provide a short summary of the progress of the 3 parts here. This summary WILL be updated:
 
 
-Installer:  	waiting for final polish; about 95% done
+=> Installer:  	waiting for final polish; about 95% done
 
 -mostly done
 
@@ -22,7 +22,7 @@ Installer:  	waiting for final polish; about 95% done
 -works from a functional standpoint
 
 
-Main Gui:  currently in focus; about 80% done
+=> Main Gui:  currently in focus; about 80% done
 
 -close to done
 
@@ -34,7 +34,7 @@ Main Gui:  currently in focus; about 80% done
 -needs to be polished afterwards
 
 
-Main script:   waiting for rework; about 15% done
+=> Main script:   waiting for rework; about 15% done
 
 -needs to be completely reworked
 
